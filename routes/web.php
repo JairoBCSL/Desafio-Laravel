@@ -19,5 +19,7 @@ use App\Http\Middlewares\AutenticacaoMiddleware;
 Route::resource('/solicitacao', SolicitacaoController::class);
 Route::get('/solicitacao/add/{id}', 'App\Http\Controllers\SolicitacaoController@add' )->name('solicitacao.add');
 Route::resource('/resposta', RespostaController::class);
-Route::post('/solicitacao/listar', 'App\Http\Controllers\SolicitacaoController@listar' )->name('solicitacao.listar');
-Route::get('/solicitacao/listar', 'App\Http\Controllers\SolicitacaoController@listar' )->name('solicitacao.listar');
+Route::post('/solicitacao/list', 'App\Http\Controllers\SolicitacaoController@list' )->name('solicitacao.list');
+Route::get('/solicitacao/list', 'App\Http\Controllers\SolicitacaoController@list' )->name('solicitacao.list');
+
+Route::get('/solicitacao/create', 'App\Http\Controllers\SolicitacaoController@create' )->name('solicitacao.create');

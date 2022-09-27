@@ -2,7 +2,7 @@
 @extends('app.solicitacao.basico')
 
 @section('final')
-  <table border="1" width="100%">
+  <table border="1" width="80%;" style="margin-left: auto; margin-right: auto;">
     <thead>
       <tr>
         <th>ID</th>
@@ -10,6 +10,8 @@
         <th>Descrição</th>
         <th>Motivo</th>
         <th>Status</th>
+        <th>Protocolo</th>
+        <th>Data de criação</th>
         <th></th>
         <th></th>
         <th></th>
@@ -23,6 +25,8 @@
           <td>{{$solicitacao->descricao}}</td>
           <td>{{$solicitacao->motivo->motivo}}</td>
           <td>{{$solicitacao->status->nome}}</td>
+          <td>{{$solicitacao->protocolo}}</td>
+          <td>{{$solicitacao->created_at}}</td>
           <td><a href="{{route('solicitacao.add', $solicitacao->id)}}">Responder</a></td>
           <td><a href="{{route('solicitacao.edit', $solicitacao)}}">Editar</a></td>
           <td>

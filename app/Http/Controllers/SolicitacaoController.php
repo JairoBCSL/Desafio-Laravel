@@ -17,21 +17,22 @@ class SolicitacaoController extends Controller
 
     public function index()
     {
-        return view('app.solicitacao.index');
+        $statuses = Status::all();
+        $motivos = Motivo::all();
+
+        return view('app.solicitacao.index', ['statuses' => $statuses, 'motivos' => $motivos]);
     }
 
-    public function listar(Request $request){
-        $solicitacoes = Solicitacao
-            //::where('titulo', 'like', '%'.$request->input('titulo').'%');
-            // ->where('motivo_id', 'like', '%'.$request->input('motivo_id').'%')
-            // ->where('descricao', 'like', '%'.$request->input('descricao').'%')
-            // ->where('status_id', 'like', '%'.$request->input('status_id').'%')
-            // ->where('protocolo', 'like', '%'.$request->input('protocolo').'%');
-            // ->paginate(10);  
-            ::all();
-        //print_r($request->all());
-        //print_r($request->input);
-        return view('app.solicitacao.listar', ['solicitacoes' => $solicitacoes, 'request' => $request->all()]);
+    public function list(Request $request){
+        $solicitacoes = Solicitacao//::where('id', '>', 1)->get();
+            ::where('titulo', 'like', '%'.$request->input('titulo').'%')
+            ->where('motivo_id', 'like', '%'.$request->input('motivo_id').'%')
+            ->where('descricao', 'like', '%'.$request->input('descricao').'%')
+            ->where('status_id', 'like', '%'.$request->input('status_id').'%')
+            ->where('protocolo', 'like', '%'.$request->input('protocolo').'%')
+            ->whereDate('created_at', 'like', '%'.$request->input('created_at').'%')
+            ->paginate(10);
+        return view('app.solicitacao.list', ['solicitacoes' => $solicitacoes, 'request' => $request->all()]);
     }
 
     /**
