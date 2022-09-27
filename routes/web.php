@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SolicitacaoController;
-use App\Http\Controllers\RespostaController;
+use App\Http\Controllers\AnswerController;
 use App\Http\Middlewares\AutenticacaoMiddleware;
 
 /*
@@ -18,7 +18,7 @@ use App\Http\Middlewares\AutenticacaoMiddleware;
 
 Route::resource('/solicitacao', SolicitacaoController::class);
 Route::get('/solicitacao/add/{id}', 'App\Http\Controllers\SolicitacaoController@add' )->name('solicitacao.add');
-Route::resource('/resposta', RespostaController::class);
+Route::resource('/answer', AnswerController::class);
 Route::post('/solicitacao/list', 'App\Http\Controllers\SolicitacaoController@list' )->name('solicitacao.list');
 Route::get('/solicitacao/list', 'App\Http\Controllers\SolicitacaoController@list' )->name('solicitacao.list');
 

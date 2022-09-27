@@ -13,8 +13,6 @@
         <th>Protocolo</th>
         <th>Data de criação</th>
         <th></th>
-        <th></th>
-        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -27,15 +25,7 @@
           <td>{{$solicitacao->status->nome}}</td>
           <td>{{$solicitacao->protocolo}}</td>
           <td>{{$solicitacao->created_at}}</td>
-          <td><a href="{{route('solicitacao.add', $solicitacao->id)}}">Responder</a></td>
-          <td><a href="{{route('solicitacao.edit', $solicitacao)}}">Editar</a></td>
-          <td>
-            <form id="form_{{$solicitacao->id}}" action="{{route('solicitacao.destroy', ['solicitacao' => $solicitacao->id])}}" method="POST">
-              @method('DELETE')
-              @csrf
-              <a href="#" onclick="document.getElementById('form_{{$solicitacao->id}}').submit()">Excluir</a>
-            </form>
-          </td>
+          <td><a href="{{route('solicitacao.show', $solicitacao)}}">Detalhes</a></td>
         </tr>
       @endforeach
     </tbody>

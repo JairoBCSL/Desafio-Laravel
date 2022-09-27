@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Solicitacao;
 use App\Models\Motivo;
 use App\Models\Status;
-use App\Models\Resposta;
+use App\Models\Answer;
 use Illuminate\Http\Request;
 
 class SolicitacaoController extends Controller
@@ -135,30 +135,11 @@ class SolicitacaoController extends Controller
      */
     public function destroy(Solicitacao $solicitacao)
     {
-
-
-        if(isset($pedido)){
-            $pedidos_produtos = PedidoProduto::all()->where('pedido_id', $pedido->id);
-            $delete = true;
-            foreach ($pedidos_produtos as $pedido_produto) {
-                $delete = $pedido_produto->delete() && $delete;
-            }
-            $delete = $pedido->delete() && $delete;
-            if($delete){
-                $msg = 'Registro deletado com sucesso';
-            }else{
-                $msg = 'Erro ao deletar registro';
-            }            
-        }else{
-            $msg = 'O registro que você quer deletar não existe';
-        } 
-
-
         if(isset($solicitacao)){
-            $respostas = Resposta::all()->where('solicitacao_id', $solicitacao->id);
+            $answers = Answer::all()->where('solicitacao_id', $solicitacao->id);
             $delete = true;
-            foreach ($respostas as $resposta) {
-                $delete = $resposta->delete() && $delete;
+            foreach ($answers as $answer) {
+                $delete = $answer->delete() && $delete;
             }
             $solicitacao->delete();   
             $delete = $solicitacao->delete() && $delete;         
@@ -170,6 +151,6 @@ class SolicitacaoController extends Controller
     public function add($id){
         $solicitacao = Solicitacao::find($id);
 
-        return redirect()->route('resposta.create', ['id' => $id]);
+        return redirect()->route('answer.create', ['id' => $id]);
     }
 }

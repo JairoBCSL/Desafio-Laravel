@@ -1,4 +1,4 @@
-@extends('app.solicitacao.basico')
+@extends('app.answer.basico')
 
 @section('titulo-final', ' - Criar')
 
@@ -6,7 +6,8 @@
 
 @section('final')
   <p>ID da solicitação: {{$solicitacao->id}}</p>
-  <form action="{{route('resposta.store')}}" method="post">
+  <p>{{$solicitacao->descricao}}</p>
+  <form action="{{route('answer.store')}}" method="post">
     @csrf
     <input type="hidden" name="solicitacao_id" value="{{$solicitacao->id ?? ''}}">
     <textarea name="texto" value=""></textarea>

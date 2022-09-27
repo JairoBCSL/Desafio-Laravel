@@ -16,7 +16,7 @@ class Solicitacao extends Model
         return [
             'titulo' => 'required|min:3|max:30',
             'motivo_id' => 'required|exists:motivos,id',
-            'descricao' => 'required|min:3|max:30',
+            'descricao' => 'required|min:3|max:100',
             'protocolo' => 'unique'
         ];
     }
@@ -25,7 +25,8 @@ class Solicitacao extends Model
         return [
             'required' => 'O campo :attribute é obrigatório',
             'min' => 'O campo precisa ter no mínimo 3 caracteres',
-            'max' => 'O campo precisa ter no máximo 30 caracteres',
+            'titulo.max' => 'O campo precisa ter no máximo 30 caracteres',
+            'descricao.max' => 'O campo precisa ter no máximo 100 caracteres',
             'exists' => 'O registro não existe',
             'unique' => 'O campo :attribute precisa ser único'
         ];
@@ -39,7 +40,7 @@ class Solicitacao extends Model
         return $this->belongsTo('\App\Models\Status');
     }
 
-    public function respostas(){
-        return $this->hasMany('App\Models\Resposta');
+    public function answers(){
+        return $this->hasMany('\App\Models\Answer');
     }
 }

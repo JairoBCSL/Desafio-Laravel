@@ -5,7 +5,6 @@
 @section('largura', 30)
 
 @section('final')
-  {{$errors??''}}
   <form action="{{route('solicitacao.update', ['solicitacao' => $solicitacao->id])}}" method="post">
     @csrf    
     @method('PUT')
